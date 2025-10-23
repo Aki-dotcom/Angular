@@ -31,4 +31,9 @@ export class ListObjects implements OnInit {
       }
     })
   }
+
+  createObject(){
+    
+  }
+  
 }

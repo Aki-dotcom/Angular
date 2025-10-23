@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable } from 'rxjs';
 
 export interface ObjectInterface {
   id: number;
@@ -27,4 +27,10 @@ export class ObjectService {
   getAllById(id: number): Observable<ObjectInterface> {
     return this.http.get<ObjectInterface>(`${this.apiUrl}/${id}`);
   }
+
+  addObject(object:ObjectInterface): Observable<ObjectInterface> {
+    return this.http.post<ObjectInterface>(this.apiUrl, object)
+  }
+
+
 }
