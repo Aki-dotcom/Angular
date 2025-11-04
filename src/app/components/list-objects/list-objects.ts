@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ObjectService, ObjectInterface} from '../../services/object'
+import {ObjectService} from '../../services/object'
+import { MyObject } from '../../model/object';
 import { CommonModule } from '@angular/common';
 
 
@@ -11,7 +12,7 @@ import { CommonModule } from '@angular/common';
   
 })
 export class ListObjects implements OnInit {
-  object: ObjectInterface[] = [];
+  object: MyObject[] = [];
   cargando: boolean = true;
   error: string = '';
 
@@ -32,8 +33,6 @@ export class ListObjects implements OnInit {
     })
   }
 
-  createObject(){
-    
-  }
+  
   
 }

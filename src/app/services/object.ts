@@ -1,15 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, Observable } from 'rxjs';
+import { MyObject } from '../model/object';
 
-export interface ObjectInterface {
-  id: number;
-  name: string;
-  email: string;
-  phone: string;
-  website: string;
-  username: string;
-}
+
 
 @Injectable({
   providedIn: 'root'
@@ -20,16 +14,16 @@ export class ObjectService {
 
   constructor(private http: HttpClient) {}
   
-  getAll(): Observable<ObjectInterface[]> {
-    return this.http.get<ObjectInterface[]>(this.apiUrl);
+  getAll(): Observable<MyObject[]> {
+    return this.http.get<MyObject[]>(this.apiUrl);
   }
 
-  getAllById(id: number): Observable<ObjectInterface> {
-    return this.http.get<ObjectInterface>(`${this.apiUrl}/${id}`);
+  getAllById(id: number): Observable<MyObject> {
+    return this.http.get<MyObject>(`${this.apiUrl}/${id}`);
   }
 
-  addObject(object:ObjectInterface): Observable<ObjectInterface> {
-    return this.http.post<ObjectInterface>(this.apiUrl, object)
+  addObject(object:MyObject): Observable<MyObject> {
+    return this.http.post<MyObject>(this.apiUrl, object)
   }
 
 
