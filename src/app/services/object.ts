@@ -26,5 +26,12 @@ export class ObjectService {
     return this.http.post<MyObject>(this.apiUrl, object)
   }
 
+  putObject(object: MyObject): Observable<MyObject> {
+  return this.http.put<MyObject>(`${this.apiUrl}/${object.id}`, object);
+  }
+  
+  deleteObject(object: MyObject): Observable<MyObject>{
+    return this.http.delete<MyObject>(`${this.apiUrl}/${object.id}`)
+  }
 
 }

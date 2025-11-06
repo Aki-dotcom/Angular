@@ -1,26 +1,92 @@
 <div class="container">
-    <h2 style="text-align: center; margin: 25px; padding: 50px;">Lista de Usuarios</h2>
-    <table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Email</th>
-      <th scope="col">Telefono</th>
-      <th scope="col">Usuario</th>
-      <th scope="col">Pagina Web</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor= "let item of object" class= "table-active">
-      <td>{{item.id}}</td>
-      <td>{{item.name}}</td>
-      <td>{{item.email}}</td>
-      <td>{{item.phone}}</td>
-      <td>{{item.username}}</td>
-      <td>{{item.website}}</td>
-    </tr>
-  </tbody>
+  <h2 style="text-align: center; margin: 25px; padding: 50px;">Lista de Usuarios</h2>
+
+  <button type="button" class="btn btn-primary mb-3" (click)="openAddModal()">
+    Añadir Usuario
+  </button>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Teléfono</th>
+        <th>Usuario</th>
+        <th>Página Web</th>
+        <th class="text-center">Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let item of object" class="table-active">
+        <td>{{ item.id }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.email }}</td>
+        <td>{{ item.phone }}</td>
+        <td>{{ item.username }}</td>
+        <td>{{ item.website }}</td>
+        <td class="text-center">
+          <button class="btn btn-warning btn-sm me-2" (click)="openEditModal(item)">Editar</button>
+          <button class="btn btn-danger btn-sm" (click)="removeObject(item.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
   
-</table>
+  <div class="modal fade" #modalAdd tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Agregar Usuario</h5>
+          <button type="button" class="btn-close" (click)="closeAddModal()"></button>
+        </div>
+
+        <div class="modal-body">
+          <input class="form-control mb-2" type="text" [(ngModel)]="selectedObject.name" placeholder="Nombre">
+          <input class="form-control mb-2" type="email" [(ngModel)]="selectedObject.email" placeholder="Email">
+          <input class="form-control mb-2" type="text" [(ngModel)]="selectedObject.phone" placeholder="Teléfono">
+          <input class="form-control mb-2" type="text" [(ngModel)]="selectedObject.username" placeholder="Usuario">
+          <input class="form-control mb-2" type="text" [(ngModel)]="selectedObject.website" placeholder="Página web">
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary" (click)="closeAddModal()">Cancelar</button>
+          <button class="btn btn-primary" (click)="saveObject()">Guardar</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" #modalEdit tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Editar Usuario</h5>
+          <button type="button" class="btn-close" (click)="closeEditModal()"></button>
+        </div>
+
+        <div class="modal-body">
+          <input class="form-control mb-2" type="text" [(ngModel)]="selectedObject.name" placeholder="Nombre">
+          <input class="form-control mb-2" type="email" [(ngModel)]="selectedObject.email" placeholder="Email">
+          <input class="form-control mb-2" type="text" [(ngModel)]="selectedObject.phone" placeholder="Teléfono">
+          <input class="form-control mb-2" type="text" [(ngModel)]="selectedObject.username" placeholder="Usuario">
+          <input class="form-control mb-2" type="text" [(ngModel)]="selectedObject.website" placeholder="Página web">
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary" (click)="closeEditModal()">Cancelar</button>
+          <button class="btn btn-warning" (click)="modifyObject()">Guardar Cambios</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </div>
