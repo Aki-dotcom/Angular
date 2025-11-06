@@ -18,10 +18,6 @@ export class ObjectService {
     return this.http.get<MyObject[]>(this.apiUrl);
   }
 
-  getAllById(id: number): Observable<MyObject> {
-    return this.http.get<MyObject>(`${this.apiUrl}/${id}`);
-  }
-
   addObject(object:MyObject): Observable<MyObject> {
     return this.http.post<MyObject>(this.apiUrl, object)
   }
