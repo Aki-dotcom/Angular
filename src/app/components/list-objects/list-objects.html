@@ -1,9 +1,5 @@
 <div class="container">
-  <h2 style="text-align: center; margin: 25px; padding: 50px;">Lista de Usuarios</h2>
-
-  <button type="button" class="btn btn-primary mb-3" (click)="openAddModal()">
-    Añadir Usuario
-  </button>
+  <h2 class="text-center my-4">Lista de Usuarios</h2>
 
   <table class="table table-hover">
     <thead>
@@ -31,36 +27,20 @@
         </td>
       </tr>
     </tbody>
+    <tfoot>
+      <tr>
+        <td>Campos:</td>
+        <td><input class="form-control" type="text" [(ngModel)]="newObject.name" placeholder="Nombre"></td>
+        <td><input class="form-control" type="email" [(ngModel)]="newObject.email" placeholder="Email"></td>
+        <td><input class="form-control" type="text" [(ngModel)]="newObject.phone" placeholder="Teléfono"></td>
+        <td><input class="form-control" type="text" [(ngModel)]="newObject.username" placeholder="Usuario"></td>
+        <td><input class="form-control" type="text" [(ngModel)]="newObject.website" placeholder="Página Web"></td>
+        <td class="text-center">
+          <button class="btn btn-primary btn-sm" (click)="saveObject()">Agregar</button>
+        </td>
+      </tr>
+    </tfoot>
   </table>
-
-
-  
-  <div class="modal fade" #modalAdd tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-
-        <div class="modal-header">
-          <h5 class="modal-title">Agregar Usuario</h5>
-          <button type="button" class="btn-close" (click)="closeAddModal()"></button>
-        </div>
-
-        <div class="modal-body">
-          <input class="form-control mb-2" type="text" [(ngModel)]="selectedObject.name" placeholder="Nombre">
-          <input class="form-control mb-2" type="email" [(ngModel)]="selectedObject.email" placeholder="Email">
-          <input class="form-control mb-2" type="text" [(ngModel)]="selectedObject.phone" placeholder="Teléfono">
-          <input class="form-control mb-2" type="text" [(ngModel)]="selectedObject.username" placeholder="Usuario">
-          <input class="form-control mb-2" type="text" [(ngModel)]="selectedObject.website" placeholder="Página web">
-        </div>
-
-        <div class="modal-footer">
-          <button class="btn btn-secondary" (click)="closeAddModal()">Cancelar</button>
-          <button class="btn btn-primary" (click)="saveObject()">Guardar</button>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
 
   <div class="modal fade" #modalEdit tabindex="-1">
     <div class="modal-dialog">

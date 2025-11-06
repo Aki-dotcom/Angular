@@ -23,6 +23,10 @@ export class ListObjects implements OnInit {
     id: 0, name: '', email: '', phone: '', username: '', website: ''
   };
 
+  newObject: MyObject = {
+    id: 0, name: '', email: '', phone: '', username: '', website: ''
+  };
+
   constructor(
     private objectService: ObjectService,
     private renderer: Renderer2
@@ -40,32 +44,18 @@ export class ListObjects implements OnInit {
     });
   }
 
-
-  
-  openAddModal() {
-    this.selectedObject = { id: 0, name: '', email: '', phone: '', username: '', website: '' };
-    this.renderer.setStyle(this.modalAdd.nativeElement, 'display', 'block');
-    this.modalAdd.nativeElement.classList.add('show');
-  }
-
-  closeAddModal() {
-    this.renderer.setStyle(this.modalAdd.nativeElement, 'display', 'none');
-    this.modalAdd.nativeElement.classList.remove('show');
-  }
-
   saveObject() {
-    if (!this.selectedObject.name || !this.selectedObject.email) {
-      alert('Complete al menos Nombre y Email');
-      return;
-    }
+      this.objectService.addObject(this.newObject).subscribe(
+      (response: MyObject) => {
+        this.object.push(response);
+        
 
-    this.objectService.addObject(this.selectedObject).subscribe({
-      next: (res) => {
-        this.object.push(res);
-        this.closeAddModal();
       },
-      error: () => alert('Error guardando usuario')
-    });
+      (error) => {
+        console.error('Error saving user:', error);
+        alert('Error saving user. Check console.');
+      }
+    );
   }
 
   openEditModal(item: MyObject) {

@@ -10,7 +10,7 @@ import { MyObject } from '../model/object';
 })
 export class ObjectService {
 
-  private apiUrl = 'https://jsonplaceholder.typicode.com/users';
+  private apiUrl = 'https://690d20eca6d92d83e85090db.mockapi.io/api/v1/users';
 
   constructor(private http: HttpClient) {}
   
